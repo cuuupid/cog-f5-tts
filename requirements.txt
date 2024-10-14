@@ -12,7 +12,7 @@ matplotlib
 pypinyin
 safetensors
 # torch>=2.0
-# torchaudio>=2.3.0
+torchaudio>=2.3.0
 torchdiffeq
 tqdm>=4.65.0
 transformers
@@ -21,3 +21,5 @@ wandb
 x_transformers>=1.31.14
 zhconv
 zhon
+numpy<2
+tqdm
