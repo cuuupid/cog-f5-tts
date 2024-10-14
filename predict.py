@@ -1,3 +1,4 @@
+from pget import pget_manifest
 import re
 import torch
 import torchaudio
@@ -167,6 +168,7 @@ def split_text_into_batches(text, max_chars=200, split_words=SPLIT_WORDS):
 
 class Predictor(BasePredictor):
     def setup(self):
+        pget_manifest('manifest.pget')
         self.device = (
             "cuda"
             if torch.cuda.is_available()
