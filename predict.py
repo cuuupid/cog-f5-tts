@@ -306,7 +306,7 @@ class Predictor(BasePredictor):
         ref_text: str = Input(description="Reference Text", default=None),
         remove_silence: bool = Input(description="Automatically remove silences?", default=True),
         custom_split_words: str = Input(description="Custom split words, comma separated", default=""),
-    ):
+    ) -> Path:
         if not custom_split_words.strip():
             custom_words = [word.strip() for word in custom_split_words.split(",")]
             global SPLIT_WORDS

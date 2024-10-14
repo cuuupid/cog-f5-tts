@@ -23,3 +23,7 @@ zhconv
 zhon
 numpy<2
 tqdm
+cached_path
+click
+pydub
+soundfile
