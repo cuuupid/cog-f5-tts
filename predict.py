@@ -282,6 +282,7 @@ class Predictor(BasePredictor):
         final_wave = np.concatenate(generated_waves)
 
         if remove_silence:
+            print("[*] Removing silence...")
             with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
                 sf.write(f.name, final_wave, self.target_sample_rate)
                 aseg = AudioSegment.from_file(f.name)
@@ -295,10 +296,13 @@ class Predictor(BasePredictor):
                 aseg.export(f.name, format="wav")
                 final_wave, _ = torchaudio.load(f.name)
             final_wave = final_wave.squeeze().cpu().numpy()
+            print("[+] Removed silence")
 
-        with tempfile.NamedTemporaryFile(suffix='.wav') as f:
-            sf.write(f.name, final_wave, self.target_sample_rate)
-            return Path(f.name)
+        print("[*] Saving output.wav...")
+        with open(f"output.wav", "wb") as f:
+            sf.write(f, final_wave, self.target_sample_rate)
+        print("[+] Saved output.wav")
+        return Path("output.wav")
 
     def predict(self,
         gen_text: str = Input(description="Text to Generate"),
@@ -361,8 +365,9 @@ class Predictor(BasePredictor):
         gen_text_batches = split_text_into_batches(gen_text, max_chars=max_chars)
         print("[+] Formed batches:", len(gen_text_batches))
         for i, gen_text in enumerate(gen_text_batches):
-            print("------ Batch {i+1} -------------------")
+            print(f"------ Batch {i+1} -------------------")
             print(gen_text)
             print("--------------------------------------")
 
-        return self._predict(ref_audio, ref_text, gen_text_batches, remove_silence)
+        self._predict(ref_audio, ref_text, gen_text_batches, remove_silence)
+        return Path("output.wav")
