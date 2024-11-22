@@ -4,6 +4,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2410.06885-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2410.06885)
 [![demo](https://img.shields.io/badge/GitHub-Demo%20page-blue.svg)](https://swivid.github.io/F5-TTS/)
 [![space](https://img.shields.io/badge/🤗-Space%20demo-yellow)](https://huggingface.co/spaces/mrfakename/E2-F5-TTS)
+[![Try a demo on Replicate](https://replicate.com/x-lance/f5-tts/badge)](https://replicate.com/x-lance/f5-tts)
 
 **F5-TTS**: Diffusion Transformer with ConvNeXt V2, faster trained and inference.
 
